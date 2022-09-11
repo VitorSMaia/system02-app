@@ -1,4 +1,4 @@
-<nav class=" bg-white w-full flex relative justify-between items-center mx-auto px-8 h-20">
+<nav class=" w-full flex relative justify-between items-center mx-auto px-8 h-20">
     <!-- logo -->
     <div class="inline-flex">
         <a class="_o6689fn" href="/"
@@ -57,23 +57,24 @@
     <div class="flex-initial">
             <div class="block">
                 <div class="inline relative">
-                    <button type="button" x-data="{ openIcon: false }" class="inline-flex items-center justify-center relative px-2 py-1  ">
-                        @if(\Illuminate\Support\Facades\Auth::check())
-                            <div x-show="openIcon" x-transition x-collapse x-clock>
-                                <a href="{{ \Illuminate\Support\Facades\Auth::logout() }}">Logout</a>
+                    <div x-data="{ openIcon: false }" class="flex flex-col items-center justify-center relative px-2 py-1  ">
+                        <span class="material-symbols-rounded cursor-pointer" x-on:click="openIcon = ! openIcon">
+                            <p class="text-4xl">menu</p>
+                        </span>
+                        <div class="absolute top-10 right-2 shadow-2xl" x-show="openIcon" x-transition x-collapse x-clock @click.outside="openIcon = false">
+                            <div class="rounded-lg bg-white h-max w-max ">
+                                <div class="flex flex-col justify-center items-center ">
+                                    @if(!\Illuminate\Support\Facades\Auth::check())
+                                        <a  class="hover:bg-gray-200 w-full p-2" href="{{ route('login') }}">Login</a>
+                                        <a class="hover:bg-gray-200 w-full p-2 rounded-b-lg " href="{{ route('login') }}">Cadsatre-se</a>
+                                    @else
+                                    <a class="hover:bg-gray-200 w-full p-2 rounded-t-lg" href="{{ route('login') }}">Perfil</a>
+                                        <a class="hover:bg-gray-200 w-full p-2 rounded-b-lg" href="{{  route('logout') }}">Logout</a>
+                                    @endif
+                                </div>
                             </div>
-                            <span class="material-symbols-rounded" x-on:click="openIcon = ! openIcon">
-                                <p class="text-4xl">account_circle</p>
-                            </span>
-                        @else
-                            <div x-show="openIcon" x-transition x-collapse x-clock>
-                                <a href="{{ route('auth.login') }}">Login</a>
-                            </div>
-                            <span class="material-symbols-rounded" x-on:click="openIcon = ! openIcon">
-                                <p class="text-4xl">menu</p>
-                            </span>
-                        @endif
-                    </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -83,3 +84,5 @@
 <div class="my-10 mx-20">
     {{ $slot}}
 </div>
+
+

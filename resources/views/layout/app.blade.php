@@ -9,11 +9,17 @@
     <title>@yield('title')</title>
     @livewireStyles
 </head>
-<body class="antialiased">
-    <x-navbar>
+<body class="antialiased bg-gray-100" x-data="{ modal: false}">
+    <x-navbar/>
+
+    <div class="my-10 mb-20">
         @yield('content')
-    </x-navbar>
+    </div>
+
+    <x-modal/>
+
     <x-footer/>
+
 @livewireScripts
 </body>
 </html>

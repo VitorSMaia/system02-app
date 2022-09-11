@@ -12,9 +12,7 @@ class Login extends Component
 
     public function login()
     {
-            if(Auth::attempt($this->state)) {
-                return $this->redirect('/');
-            }
+
     }
     public function render()
     {
